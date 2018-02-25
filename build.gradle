@@ -1,0 +1,30 @@
+plugins {
+    id "net.ltgt.apt" version "0.14"
+}
+
+group 'com.sps.server'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
+    compile group: 'org.json', name: 'json', version: '20180130'
+    implementation group: 'com.google.guava', name: 'guava', version: '24.0-android'
+}
+
+task server(type: JavaExec) {
+    main = 'com.sps.server.CommandLineInterface'
+    classpath = sourceSets.main.runtimeClasspath
+}
